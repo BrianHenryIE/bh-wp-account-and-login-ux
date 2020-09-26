@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^.*bh-wp-account-and-login-ux$ [NC,OR]
+RewriteCond %{REQUEST_URI} !wordpress/
+RewriteRule (.*) wordpress/$1 [L]
+
+php_flag log_errors On
+php_value error_log "wp-content/php_errors.log"
