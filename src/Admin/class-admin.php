@@ -1,32 +1,32 @@
 <?php
 /**
- * The public-facing functionality of the plugin.
+ * The admin-specific functionality of the plugin.
  *
  * @link       http://example.com
  * @since      1.0.0
  *
  * @package    BH_WP_Account_And_Login_UX
- * @subpackage BH_WP_Account_And_Login_UX/frontend
+ * @subpackage BH_WP_Account_And_Login_UX/admin
  */
 
-namespace BH_WP_Account_And_Login_UX\frontend;
+namespace BrianHenryIE\WP_Account_And_Login_UX\Admin;
 
-use BH_WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Object;
+use BrianHenryIE\WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Object;
 
 /**
- * The public-facing functionality of the plugin.
+ * The admin-specific functionality of the plugin.
  *
  * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the frontend-facing stylesheet and JavaScript.
+ * enqueue the admin-specific stylesheet and JavaScript.
  *
  * @package    BH_WP_Account_And_Login_UX
- * @subpackage BH_WP_Account_And_Login_UX/frontend
+ * @subpackage BH_WP_Account_And_Login_UX/admin
  * @author     Brian Henry <BrianHenryIE@gmail.com>
  */
-class Frontend extends WPPB_Object {
+class Admin extends WPPB_Object {
 
 	/**
-	 * Register the stylesheets for the frontend-facing side of the site.
+	 * Register the stylesheets for the admin area.
 	 *
 	 * @since    1.0.0
 	 */
@@ -44,12 +44,12 @@ class Frontend extends WPPB_Object {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/bh-wp-account-and-login-ux-frontend.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/bh-wp-account-and-login-ux-admin.css', array(), $this->version, 'all' );
 
 	}
 
 	/**
-	 * Register the JavaScript for the frontend-facing side of the site.
+	 * Register the JavaScript for the admin area.
 	 *
 	 * @since    1.0.0
 	 */
@@ -67,7 +67,7 @@ class Frontend extends WPPB_Object {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/bh-wp-account-and-login-ux-frontend.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/bh-wp-account-and-login-ux-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 

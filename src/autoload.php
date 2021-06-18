@@ -11,10 +11,9 @@
  * @see https://github.com/pablo-sg-pacheco/wp-namespace-autoloader/
  */
 
-namespace BH_WP_Account_And_Login_UX;
+namespace BrianHenryIE\WP_Account_And_Login_UX;
 
-use BH_WP_Account_And_Login_UX\Pablo_Pacheco\WP_Namespace_Autoloader\WP_Namespace_Autoloader;
-
+use BrianHenryIE\WP_Account_And_Login_UX\Pablo_Pacheco\WP_Namespace_Autoloader\WP_Namespace_Autoloader;
 
 $class_map_file = __DIR__ . '/autoload_classmap.php';
 if ( file_exists( $class_map_file ) ) {
@@ -34,7 +33,7 @@ if ( file_exists( $class_map_file ) ) {
 }
 
 // The plugin-scoped namespace for composer required libraries, as specified in composer.json Mozart config.
-$dep_namespace = 'BH_WP_Account_And_Login_UX';
+$dep_namespace = "BrianHenryIE\\WP_Account_And_Login_UX";
 // The Mozart config `dep_directory` adjusted for relative path.
 $dep_directory = '/vendor/';
 
@@ -53,6 +52,8 @@ spl_autoload_register(
 		}
 	}
 );
+
+require_once __DIR__ . '/vendor/Pablo_Pacheco/WP_Namespace_Autoloader/WP_Namespace_Autoloader.php';
 
 $wpcs_autoloader = new WP_Namespace_Autoloader();
 $wpcs_autoloader->init();

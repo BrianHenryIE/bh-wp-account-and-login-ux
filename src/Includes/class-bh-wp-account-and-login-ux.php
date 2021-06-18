@@ -12,14 +12,14 @@
  * @subpackage BH_WP_Account_And_Login_UX/includes
  */
 
-namespace BH_WP_Account_And_Login_UX\includes;
+namespace BrianHenryIE\WP_Account_And_Login_UX\Includes;
 
-use BH_WP_Account_And_Login_UX\admin\Admin;
-use BH_WP_Account_And_Login_UX\API\Settings_Interface;
-use BH_WP_Account_And_Login_UX\frontend\Frontend;
-use BH_WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Loader_Interface;
-use BH_WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Plugin_Abstract;
-use BH_WP_Account_And_Login_UX\woocommerce\Checkout;
+use BrianHenryIE\WP_Account_And_Login_UX\Admin\Admin;
+use BrianHenryIE\WP_Account_And_Login_UX\API\Settings_Interface;
+use BrianHenryIE\WP_Account_And_Login_UX\Frontend\Frontend;
+use BrianHenryIE\WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Loader_Interface;
+use BrianHenryIE\WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Plugin_Abstract;
+use BrianHenryIE\WP_Account_And_Login_UX\WooCommerce\Checkout;
 
 /**
  * The core plugin class.

@@ -12,7 +12,7 @@
  * @subpackage BH_WP_Account_And_Login_UX/includes
  */
 
-namespace BH_WP_Account_And_Login_UX\includes;
+namespace BrianHenryIE\WP_Account_And_Login_UX\Includes;
 
 /**
  * Define the internationalization functionality.

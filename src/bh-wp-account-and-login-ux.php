@@ -26,11 +26,11 @@
 
 namespace BH_WP_Account_And_Login_UX;
 
-use BH_WP_Account_And_Login_UX\API\Settings;
-use BH_WP_Account_And_Login_UX\includes\Activator;
-use BH_WP_Account_And_Login_UX\includes\Deactivator;
-use BH_WP_Account_And_Login_UX\includes\BH_WP_Account_And_Login_UX;
-use BH_WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Loader;
+use BrianHenryIE\WP_Account_And_Login_UX\API\Settings;
+use BrianHenryIE\WP_Account_And_Login_UX\Includes\Activator;
+use BrianHenryIE\WP_Account_And_Login_UX\Includes\Deactivator;
+use BrianHenryIE\WP_Account_And_Login_UX\Includes\BH_WP_Account_And_Login_UX;
+use BrianHenryIE\WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Loader;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {

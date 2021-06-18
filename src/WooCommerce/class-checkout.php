@@ -11,16 +11,16 @@
  * @subpackage BH_WP_Account_And_Login_UX/woocommerce
  */
 
-namespace BH_WP_Account_And_Login_UX\woocommerce;
+namespace BrianHenryIE\WP_Account_And_Login_UX\WooCommerce;
 
-use BH_WP_Account_And_Login_UX\API\Settings_Interface;
+use BrianHenryIE\WP_Account_And_Login_UX\API\Settings_Interface;
 use WC_Checkout;
 use WC_Shortcode_My_Account;
 
 /**
  * Class Checkout
  *
- * @package BH_WP_Account_And_Login_UX\woocommerce
+ * @package BrianHenryIE\WP_Account_And_Login_UX\WooCommerce
  */
 class Checkout {
 
@@ -83,6 +83,8 @@ class Checkout {
 	 * Hide the native login prompt/form which appears above the checkout.
 	 *
 	 * This is just the "Allow customers to log into an existing account during checkout" option.
+	 *
+	 * TODO only return no on the actual checkout, not the settings page
 	 *
 	 * @see /wp-admin/admin.php?page=wc-settings&tab=account
 	 *
