@@ -1,30 +1,23 @@
 {
     "name": "brianhenryie/bh-wp-account-and-login-ux",
-    "description": "This is a short description of what plugin_title does.",
+    "description": "Small changes to make account registration and log in frictionless.",
     "type": "wordpress-plugin",
     "license": "GPL-2.0+-or-later",
     "authors": [
         {
-            "name": "Brian Henry",
+            "name": "BrianHenryIE",
             "email": "BrianHenryIE@gmail.com"
         }
     ],
     "minimum-stability": "dev",
     "prefer-stable": true,
     "config": {
-        "process-timeout": 0
+        "process-timeout": 0,
+        "sort-packages": true
     },
     "repositories": [
         {
             "url": "https://github.com/WordPress/wordpress-develop",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/pablo-sg-pacheco/wp-namespace-autoloader",
-            "type": "git"
-        },
-        {
-            "url": "https://github.com/BrianHenryIE/bh-wp-dev",
             "type": "git"
         },
         {
@@ -43,41 +36,46 @@
     "require-dev": {
         "10up/wp_mock": "0.4.2",
         "brianhenryie/composer-phpstorm": "dev-master",
-        "brianhenryie/wp-dev": "dev-master",
-        "dealerdirect/phpcodesniffer-composer-installer": "*",
         "brianhenryie/strauss": "*",
         "codeception/module-asserts": "^1.0",
+        "codeception/module-cli": "^1.0",
         "codeception/module-db": "^1.0.0",
+        "codeception/module-filesystem": "^1.0",
         "codeception/module-phpbrowser": "^1.0.0",
         "codeception/module-webdriver": "^1.0",
-        "codeception/module-filesystem": "^1.0",
         "codeception/util-universalframework": "^1.0",
-        "codeception/module-cli": "^1.0",
         "cweagans/composer-patches": "~1.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "*",
         "jaschilz/php-coverage-badger": "^2.0",
         "kporras07/composer-symlinks": "dev-master",
         "lucatume/wp-browser": "*",
-        "phpunit/phpunit": ">=7.0",
-        "phpunit/phpcov": "^5.0",
         "php-stubs/woocommerce-stubs": "^5.2",
         "phpcompatibility/phpcompatibility-wp": "*",
-        "squizlabs/php_codesniffer": "dev-master#1371c59bd5da5cfc877ab8478753362edc9bbc9b",
-        "wordpress/wordpress": "^5.5",
-        "wp-coding-standards/wpcs": "*",
-        "wpackagist-theme/twentytwenty": "*",
         "phpstan/extension-installer": "^1.1",
+        "phpunit/phpcov": "*",
+        "squizlabs/php_codesniffer": "*",
         "szepeviktor/phpstan-wordpress": "^0.7.2",
         "voku/portable-ascii": "dev-master",
+        "wordpress/wordpress": "*",
+        "wp-cli/wp-cli-bundle": "*",
+        "wp-coding-standards/wpcs": "*",
+        "wpackagist-plugin/woo-phone-validator": "^1.3",
         "wpackagist-plugin/woocommerce": "^4.5",
-        "wpackagist-theme/storefront": "*"
+        "wpackagist-theme/storefront": "*",
+        "wpackagist-theme/twentytwenty": "*"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BrianHenryIE\\WP_Account_And_Login_UX\\": ["tests/integration","tests/unit","tests/wpunit"]
+        }
     },
     "extra": {
         "patches": {
             "jaschilz/php-coverage-badger": {
                 "Allow customising the text": "https://github.com/JASchilz/PHPCoverageBadge/pull/1.patch"
             },
-            "squizlabs/php_codesniffer": {
-                "Add GitHub Actions Annotations report type": "https://github.com/squizlabs/PHP_CodeSniffer/pull/2918.patch"
+            "10up/wp_mock": {
+                "Add AnyObject matcher": "https://github.com/BrianHenryIE/wp_mock/pull/1.patch"
             }
         },
         "strauss": {
@@ -107,7 +105,7 @@
         "post-install-cmd": [
             "vendor/bin/strauss",
             "vendor/bin/wp core download --path=wordpress --allow-root || true;",
-            "export $(grep -v '^#' .env.testing | xargs); vendor/bin/wp config create --dbname=$TEST_SITE_DB_NAME --dbuser=$TEST_SITE_DB_USER --dbpass=$TEST_SITE_DB_PASSWORD --allow-root || true",
+            "export $(grep -v '^#' .env.testing | xargs); vendor/bin/wp config create --dbname=$TEST_SITE_DB_NAME --dbuser=$TEST_SITE_DB_USER --dbpass=$TEST_SITE_DB_PASSWORD --allow-root --extra-php=\"define( 'WP_DEBUG', true ); define( 'WP_DEBUG_LOG', true );\" || true",
             "Kporras07\\ComposerSymlinks\\ScriptHandler::createSymlinks",
             "mkdir -p wordpress/wp-content/uploads",
             "BrianHenryIE\\ComposerPhpStorm\\ExcludeFolders::update",
@@ -116,14 +114,20 @@
         "post-update-cmd": [
             "vendor/bin/strauss",
             "vendor/bin/wp core download --path=wordpress --allow-root || true;",
-            "export $(grep -v '^#' .env.testing | xargs); vendor/bin/wp config create --dbname=$TEST_SITE_DB_NAME --dbuser=$TEST_SITE_DB_USER --dbpass=$TEST_SITE_DB_PASSWORD --allow-root || true",
+            "export $(grep -v '^#' .env.testing | xargs); vendor/bin/wp config create --dbname=$TEST_SITE_DB_NAME --dbuser=$TEST_SITE_DB_USER --dbpass=$TEST_SITE_DB_PASSWORD --allow-root --extra-php=\"define( 'WP_DEBUG', true ); define( 'WP_DEBUG_LOG', true );\" || true",
             "Kporras07\\ComposerSymlinks\\ScriptHandler::createSymlinks",
             "mkdir -p wordpress/wp-content/uploads",
             "BrianHenryIE\\ComposerPhpStorm\\ExcludeFolders::update",
             "BrianHenryIE\\ComposerPhpStorm\\PHPUnitRunConfigurations::update"
+        ],
+        "save-acceptance-database": [
+            "export $(grep -v '^#' .env.testing | xargs); mysqldump -u $TEST_SITE_DB_USER -p$TEST_SITE_DB_PASSWORD  $TEST_SITE_DB_NAME > tests/_data/dump.sql;"
+        ],
+        "coverage-tests": [
+            "vendor/bin/codecept run unit --coverage unit.cov",
+            "vendor/bin/codecept run wpunit --coverage wpunit.cov",
+            "vendor/bin/phpcov merge --clover tests/_output/clover.xml --html tests/_output/html tests/_output;",
+            "open tests/_output/html/index.html"
         ]
-    },
-    "create-plugin-archive": [
-        "BrianHenryIE\\WP_Dev\\CreatePluginArchive::createZip"
-    ]
+    }
 }
