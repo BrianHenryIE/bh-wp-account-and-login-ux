@@ -11,7 +11,7 @@
 
 namespace BrianHenryIE\WP_Account_And_Login_UX\Frontend;
 
-use BrianHenryIE\WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Object;
+use BrianHenryIE\WP_Account_And_Login_UX\API\Settings_Interface;
 
 /**
  * The public-facing functionality of the plugin.
@@ -23,7 +23,14 @@ use BrianHenryIE\WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Object;
  * @subpackage BH_WP_Account_And_Login_UX/frontend
  * @author     Brian Henry <BrianHenryIE@gmail.com>
  */
-class Frontend extends WPPB_Object {
+class Frontend {
+
+	protected Settings_Interface $settings;
+
+	public function __construct( Settings_Interface $settings ) {
+		$this->settings = $settings;
+	}
+
 
 	/**
 	 * Register the stylesheets for the frontend-facing side of the site.
@@ -44,7 +51,7 @@ class Frontend extends WPPB_Object {
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/bh-wp-account-and-login-ux-frontend.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->settings->get_plugin_slug(), plugin_dir_url( __FILE__ ) . 'css/bh-wp-account-and-login-ux-frontend.css', array(), $this->settings->get_plugin_version(), 'all' );
 
 	}
 
@@ -67,7 +74,7 @@ class Frontend extends WPPB_Object {
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/bh-wp-account-and-login-ux-frontend.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->settings->get_plugin_slug(), plugin_dir_url( __FILE__ ) . 'js/bh-wp-account-and-login-ux-frontend.js', array( 'jquery' ), $this->settings->get_plugin_version(), false );
 
 	}
 

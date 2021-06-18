@@ -17,8 +17,6 @@ namespace BrianHenryIE\WP_Account_And_Login_UX\Includes;
 use BrianHenryIE\WP_Account_And_Login_UX\Admin\Admin;
 use BrianHenryIE\WP_Account_And_Login_UX\API\Settings_Interface;
 use BrianHenryIE\WP_Account_And_Login_UX\Frontend\Frontend;
-use BrianHenryIE\WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Loader_Interface;
-use BrianHenryIE\WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Plugin_Abstract;
 use BrianHenryIE\WP_Account_And_Login_UX\WooCommerce\Checkout;
 
 /**
@@ -35,10 +33,10 @@ use BrianHenryIE\WP_Account_And_Login_UX\WooCommerce\Checkout;
  * @subpackage BH_WP_Account_And_Login_UX/includes
  * @author     Brian Henry <BrianHenryIE@gmail.com>
  */
-class BH_WP_Account_And_Login_UX extends WPPB_Plugin_Abstract {
+class BH_WP_Account_And_Login_UX {
 
 	/** @var Settings_Interface */
-	protected $settings;
+	protected Settings_Interface $settings;
 
 	/**
 	 * Define the core functionality of the plugin.
@@ -49,18 +47,9 @@ class BH_WP_Account_And_Login_UX extends WPPB_Plugin_Abstract {
 	 *
 	 * @since    1.0.0
 	 *
-	 * @param WPPB_Loader_Interface $loader The WPPB class which adds the hooks and filters to WordPress.
-	 * @param Settings_Interface    $settings Facade for wp_options.
+	 * @param Settings_Interface $settings Facade for wp_options.
 	 */
-	public function __construct( $loader, $settings ) {
-		if ( defined( 'BH_WP_ACCOUNT_AND_LOGIN_UX_VERSION' ) ) {
-			$version = BH_WP_ACCOUNT_AND_LOGIN_UX_VERSION;
-		} else {
-			$version = '1.0.0';
-		}
-		$plugin_name = 'bh-wp-account-and-login-ux';
-
-		parent::__construct( $loader, $plugin_name, $version );
+	public function __construct( Settings_Interface $settings ) {
 
 		$this->settings = $settings;
 
@@ -84,7 +73,7 @@ class BH_WP_Account_And_Login_UX extends WPPB_Plugin_Abstract {
 
 		$plugin_i18n = new I18n();
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		add_action( 'plugins_loaded', array( $plugin_i18n, 'load_plugin_textdomain' ) );
 
 	}
 
@@ -96,10 +85,10 @@ class BH_WP_Account_And_Login_UX extends WPPB_Plugin_Abstract {
 	 */
 	protected function define_admin_hooks() {
 
-		$plugin_admin = new Admin( $this->get_plugin_name(), $this->get_version() );
+		$plugin_admin = new Admin( $this->settings );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_styles' ) );
+		add_action( 'admin_enqueue_scripts', array( $plugin_admin, 'enqueue_scripts' ) );
 
 	}
 
@@ -111,10 +100,10 @@ class BH_WP_Account_And_Login_UX extends WPPB_Plugin_Abstract {
 	 */
 	protected function define_frontend_hooks() {
 
-		$plugin_frontend = new Frontend( $this->get_plugin_name(), $this->get_version() );
+		$plugin_frontend = new Frontend( $this->settings );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_frontend, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_frontend, 'enqueue_scripts' );
+		add_action( 'wp_enqueue_scripts', array( $plugin_frontend, 'enqueue_styles' ) );
+		add_action( 'wp_enqueue_scripts', array( $plugin_frontend, 'enqueue_scripts' ) );
 
 	}
 
@@ -128,31 +117,31 @@ class BH_WP_Account_And_Login_UX extends WPPB_Plugin_Abstract {
 
 		$checkout = new Checkout( $this->settings );
 
-		$this->loader->add_action( 'wp_footer', $checkout, 'add_is_user_logged_in_json' );
+		add_action( 'wp_footer', array( $checkout, 'add_is_user_logged_in_json' ) );
 
-		$this->loader->add_action( 'wp_enqueue_scripts', $checkout, 'enqueue_scripts' );
+		add_action( 'wp_enqueue_scripts', array( $checkout, 'enqueue_scripts' ) );
 
-		$this->loader->add_filter( 'pre_option_woocommerce_enable_checkout_login_reminder', $checkout, 'woocommerce_disable_checkout_login_reminder' );
+		add_filter( 'pre_option_woocommerce_enable_checkout_login_reminder', array( $checkout, 'woocommerce_disable_checkout_login_reminder' ) );
 
-		$this->loader->add_filter( 'woocommerce_checkout_fields', $checkout, 'move_email_input_first' );
+		add_filter( 'woocommerce_checkout_fields', array( $checkout, 'move_email_input_first' ) );
 
 		// Parse $_POST for common use later.
-		$this->loader->add_action( 'woocommerce_checkout_update_order_review', $checkout, 'parse_post_on_update_order_review', 1, 1 );
+		add_action( 'woocommerce_checkout_update_order_review', array( $checkout, 'parse_post_on_update_order_review' ), 1, 1 );
 
 		// Runs during woocommerce_checkout_update_order_review.
-		$this->loader->add_filter( 'woocommerce_update_order_review_fragments', $checkout, 'rerender_billing_fields_fragment' );
+		add_filter( 'woocommerce_update_order_review_fragments', array( $checkout, 'rerender_billing_fields_fragment' ) );
 
-		$this->loader->add_filter( 'woocommerce_checkout_fields', $checkout, 'add_password_field_login_button_to_billing' );
+		add_filter( 'woocommerce_checkout_fields', array( $checkout, 'add_password_field_login_button_to_billing' ) );
 
-		$this->loader->add_filter( 'woocommerce_checkout_fields', $checkout, 'add_login_response_notice' );
+		add_filter( 'woocommerce_checkout_fields', array( $checkout, 'add_login_response_notice' ) );
 
-		$this->loader->add_filter( 'woocommerce_form_field_checkout_inline_login_field', $checkout, 'woocommerce_form_field_checkout_inline_login_field', 10, 4 );
+		add_filter( 'woocommerce_form_field_checkout_inline_login_field', array( $checkout, 'woocommerce_form_field_checkout_inline_login_field' ), 10, 4 );
 
-		$this->loader->add_filter( 'woocommerce_form_field_checkout_inline_login_response', $checkout, 'woocommerce_form_field_checkout_inline_login_response', 10, 4 );
+		add_filter( 'woocommerce_form_field_checkout_inline_login_response', array( $checkout, 'woocommerce_form_field_checkout_inline_login_response' ), 10, 4 );
 
-		$this->loader->add_action( 'woocommerce_checkout_update_order_review', $checkout, 'inline_log_user_in', 2, 1 );
+		add_action( 'woocommerce_checkout_update_order_review', array( $checkout, 'inline_log_user_in' ), 2, 1 );
 
-		$this->loader->add_action( 'woocommerce_checkout_update_order_review', $checkout, 'send_password_reset_email', 2, 1 );
+		add_action( 'woocommerce_checkout_update_order_review', array( $checkout, 'send_password_reset_email' ), 2, 1 );
 
 	}
 

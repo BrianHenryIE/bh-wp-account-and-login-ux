@@ -30,7 +30,6 @@ use BrianHenryIE\WP_Account_And_Login_UX\API\Settings;
 use BrianHenryIE\WP_Account_And_Login_UX\Includes\Activator;
 use BrianHenryIE\WP_Account_And_Login_UX\Includes\Deactivator;
 use BrianHenryIE\WP_Account_And_Login_UX\Includes\BH_WP_Account_And_Login_UX;
-use BrianHenryIE\WP_Account_And_Login_UX\BrianHenryIE\WPPB\WPPB_Loader;
 
 // If this file is called directly, abort.
 if ( ! defined( 'WPINC' ) ) {
@@ -77,19 +76,12 @@ register_deactivation_hook( __FILE__, 'BH_WP_Account_And_Login_UX\deactivate_bh_
  *
  * @since    1.0.0
  */
-function instantiate_bh_wp_account_and_login_ux() {
+function instantiate_bh_wp_account_and_login_ux(): void {
 
 	$settings = new Settings();
 
-	$loader = new WPPB_Loader();
-	$plugin = new BH_WP_Account_And_Login_UX( $loader, $settings );
+	new BH_WP_Account_And_Login_UX( $settings );
 
-	return $plugin;
 }
 
-/**
- * The core plugin class that is used to define internationalization,
- * admin-specific hooks, and frontend-facing site hooks.
- */
-$GLOBALS['bh_wp_account_and_login_ux'] = $bh_wp_account_and_login_ux = instantiate_bh_wp_account_and_login_ux();
-$bh_wp_account_and_login_ux->run();
+instantiate_bh_wp_account_and_login_ux();

@@ -24,10 +24,6 @@
             "type": "git"
         },
         {
-            "url": "https://github.com/BrianHenryIE/WPPB-lib",
-            "type": "git"
-        },
-        {
             "url": "https://github.com/BrianHenryIE/bh-wp-dev",
             "type": "git"
         },
@@ -41,7 +37,6 @@
         }
     ],
     "require": {
-        "brianhenryie/wppb-lib": "dev-master",
         "php": ">=7.2",
         "pablo-sg-pacheco/wp-namespace-autoloader": "dev-master"
     },
@@ -50,6 +45,7 @@
         "brianhenryie/composer-phpstorm": "dev-master",
         "brianhenryie/wp-dev": "dev-master",
         "dealerdirect/phpcodesniffer-composer-installer": "*",
+        "brianhenryie/strauss": "*",
         "codeception/module-asserts": "^1.0",
         "codeception/module-db": "^1.0.0",
         "codeception/module-phpbrowser": "^1.0.0",
@@ -57,7 +53,6 @@
         "codeception/module-filesystem": "^1.0",
         "codeception/util-universalframework": "^1.0",
         "codeception/module-cli": "^1.0",
-        "coenjacobs/mozart": "dev-master",
         "cweagans/composer-patches": "~1.0",
         "jaschilz/php-coverage-badger": "^2.0",
         "kporras07/composer-symlinks": "dev-master",
@@ -82,12 +77,9 @@
                 "Add GitHub Actions Annotations report type": "https://github.com/squizlabs/PHP_CodeSniffer/pull/2918.patch"
             }
         },
-        "mozart": {
-            "dep_namespace": "BH_WP_Account_And_Login_UX\\",
-            "dep_directory": "/src/vendor/",
-            "classmap_prefix": "BH_WP_Account_And_Login_UX_",
-            "classmap_directory": "/src/dependencies/",
-            "delete_vendor_directories": false
+        "strauss": {
+            "namespace_prefix": "BrianHenryIE\\WP_Account_And_Login_UX\\",
+            "target_directory": "/src/strauss/"
         },
         "symlinks": {
             "wp-content": "wordpress/wp-content",
@@ -110,7 +102,7 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "\"vendor/bin/mozart\" compose",
+            "vendor/bin/strauss",
             "vendor/bin/wp core download --path=wordpress --allow-root || true;",
             "export $(grep -v '^#' .env.testing | xargs); vendor/bin/wp config create --dbname=$TEST_SITE_DB_NAME --dbuser=$TEST_SITE_DB_USER --dbpass=$TEST_SITE_DB_PASSWORD --allow-root || true",
             "Kporras07\\ComposerSymlinks\\ScriptHandler::createSymlinks",
@@ -119,7 +111,7 @@
             "BrianHenryIE\\ComposerPhpStorm\\PHPUnitRunConfigurations::update"
         ],
         "post-update-cmd": [
-            "\"vendor/bin/mozart\" compose",
+            "vendor/bin/strauss",
             "vendor/bin/wp core download --path=wordpress --allow-root || true;",
             "export $(grep -v '^#' .env.testing | xargs); vendor/bin/wp config create --dbname=$TEST_SITE_DB_NAME --dbuser=$TEST_SITE_DB_USER --dbpass=$TEST_SITE_DB_PASSWORD --allow-root || true",
             "Kporras07\\ComposerSymlinks\\ScriptHandler::createSymlinks",
