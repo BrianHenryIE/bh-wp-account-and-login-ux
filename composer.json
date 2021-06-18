@@ -37,7 +37,7 @@
         }
     ],
     "require": {
-        "php": ">=7.2",
+        "php": ">=7.4",
         "pablo-sg-pacheco/wp-namespace-autoloader": "dev-master"
     },
     "require-dev": {
@@ -59,11 +59,14 @@
         "lucatume/wp-browser": "*",
         "phpunit/phpunit": ">=7.0",
         "phpunit/phpcov": "^5.0",
+        "php-stubs/woocommerce-stubs": "^5.2",
         "phpcompatibility/phpcompatibility-wp": "*",
         "squizlabs/php_codesniffer": "dev-master#1371c59bd5da5cfc877ab8478753362edc9bbc9b",
         "wordpress/wordpress": "^5.5",
         "wp-coding-standards/wpcs": "*",
         "wpackagist-theme/twentytwenty": "*",
+        "phpstan/extension-installer": "^1.1",
+        "szepeviktor/phpstan-wordpress": "^0.7.2",
         "voku/portable-ascii": "dev-master",
         "wpackagist-plugin/woocommerce": "^4.5",
         "wpackagist-theme/storefront": "*"

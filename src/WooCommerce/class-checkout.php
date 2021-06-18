@@ -47,7 +47,7 @@ class Checkout {
 	 *
 	 * @hooked wp_footer
 	 */
-	public function add_is_user_logged_in_json() {
+	public function add_is_user_logged_in_json(): void {
 
 		if ( ! is_checkout() ) {
 			return;
@@ -71,9 +71,9 @@ class Checkout {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts(): void {
 
-		$version = time();
+		$version = $this->settings->get_plugin_version();
 
 		wp_enqueue_script( 'bh-wp-account-and-login-ux-woocommerce-checkout', plugin_dir_url( __FILE__ ) . 'js/checkout.js', array( 'jquery' ), $version, false );
 
@@ -115,9 +115,10 @@ class Checkout {
 	 *
 	 * @return array
 	 */
-	public function move_email_input_first( $checkout_fields ) {
+	public function move_email_input_first( array $checkout_fields ): array {
 
 		$checkout_fields['billing']['billing_email']['priority'] = 4;
+
 		return $checkout_fields;
 	}
 
@@ -134,7 +135,7 @@ class Checkout {
 	 *
 	 * @param string $posted_data `posted_data` key of array posted by checkout.js.
 	 */
-	public function parse_post_on_update_order_review( $posted_data ) {
+	public function parse_post_on_update_order_review( string $posted_data ): void {
 
 		$post_array = array();
 		parse_str( $posted_data, $post_array );
@@ -171,7 +172,7 @@ class Checkout {
 	 *
 	 * @return array
 	 */
-	public function rerender_billing_fields_fragment( $fragments ) {
+	public function rerender_billing_fields_fragment( array $fragments ): array {
 
 		$checkout = WC()->checkout();
 
@@ -202,7 +203,7 @@ class Checkout {
 	 *
 	 * @return array
 	 */
-	public function add_password_field_login_button_to_billing( $checkout_fields ) {
+	public function add_password_field_login_button_to_billing( array $checkout_fields ): array {
 
 		if ( is_user_logged_in() ) {
 			return $checkout_fields;
@@ -228,8 +229,8 @@ class Checkout {
 		);
 
 		$checkout_fields['billing']['inline_login'] = $checkout_inline_login_field;
-		return $checkout_fields;
 
+		return $checkout_fields;
 	}
 
 	/**
@@ -280,9 +281,9 @@ class Checkout {
 	 *
 	 * @hooked woocommerce_checkout_update_order_review
 	 *
-	 * @param string $posted_data The `posted_data` key of the $_POST array send by checkout.js, as parsed earlier.
+	 * @param string $_posted_data The `posted_data` key of the $_POST array send by checkout.js, as parsed earlier.
 	 */
-	public function inline_log_user_in( $posted_data ) {
+	public function inline_log_user_in( $_posted_data ): void {
 
 		if ( is_user_logged_in() ) {
 			return;
@@ -387,6 +388,7 @@ class Checkout {
 		add_filter(
 			'woocommerce_update_order_review_fragments',
 			function( $fragments ) {
+				global $wp;
 				$params = array(
 					'ajax_url'                  => WC()->ajax_url(),
 					'wc_ajax_url'               => \WC_AJAX::get_endpoint( '%%endpoint%%' ),
@@ -413,12 +415,11 @@ class Checkout {
 	/**
 	 * Instance variable to hold the success/failure message after login.
 	 *
-	 * @var array {
-	 *  @type string $message
-	 *  @type string $severity info|message|error standard WooCommerce CSS.
-	 * }
+	 * severity: one of info|message|error standard WooCommerce CSS.
+	 *
+	 * @var array{'message': string, 'severity': string}
 	 */
-	protected $inline_login_response = array();
+	protected array $inline_login_response = array();
 
 	/**
 	 * After login and password reset actions, display feedback to the user.
@@ -432,7 +433,7 @@ class Checkout {
 	 *
 	 * @return array
 	 */
-	public function add_login_response_notice( $checkout_fields ) {
+	public function add_login_response_notice( array $checkout_fields ): array {
 
 		$checkout_inline_login_response_field = array(
 			'type'     => 'checkout_inline_login_response',
@@ -440,8 +441,8 @@ class Checkout {
 		);
 
 		$checkout_fields['billing']['inline_login_response'] = $checkout_inline_login_response_field;
-		return $checkout_fields;
 
+		return $checkout_fields;
 	}
 
 	/**
@@ -490,9 +491,9 @@ class Checkout {
 	 *
 	 * @hooked woocommerce_checkout_update_order_review
 	 *
-	 * @param string $posted_data The `posted_data` key of the $_POST array send by checkout.js, as parsed earlier.
+	 * @param string $_posted_data The `posted_data` key of the $_POST array send by checkout.js, as parsed earlier.
 	 */
-	public function send_password_reset_email( $posted_data ) {
+	public function send_password_reset_email( $_posted_data ): void {
 
 		if ( is_user_logged_in() ) {
 			// TODO: Add a notice?
@@ -512,6 +513,11 @@ class Checkout {
 		}
 
 		$user = get_user_by( 'email', $email );
+
+		if ( false === $user ) {
+			// TODO: Add a message ~"no user found with that email"... although that shouldn't really happen.
+			return;
+		}
 
 		$key = get_password_reset_key( $user );
 

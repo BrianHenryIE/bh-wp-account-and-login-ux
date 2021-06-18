@@ -49,7 +49,7 @@ define( 'BH_WP_ACCOUNT_AND_LOGIN_UX_VERSION', '0.1.0' );
  * The code that runs during plugin activation.
  * This action is documented in includes/class-activator.php
  */
-function activate_bh_wp_account_and_login_ux() {
+function activate_bh_wp_account_and_login_ux(): void {
 
 	Activator::activate();
 }
@@ -58,7 +58,7 @@ function activate_bh_wp_account_and_login_ux() {
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-deactivator.php
  */
-function deactivate_bh_wp_account_and_login_ux() {
+function deactivate_bh_wp_account_and_login_ux(): void {
 
 	Deactivator::deactivate();
 }

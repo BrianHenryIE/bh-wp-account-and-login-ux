@@ -69,7 +69,7 @@ class BH_WP_Account_And_Login_UX {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	protected function set_locale() {
+	protected function set_locale(): void {
 
 		$plugin_i18n = new I18n();
 
@@ -83,7 +83,7 @@ class BH_WP_Account_And_Login_UX {
 	 *
 	 * @since    1.0.0
 	 */
-	protected function define_admin_hooks() {
+	protected function define_admin_hooks(): void {
 
 		$plugin_admin = new Admin( $this->settings );
 
@@ -98,7 +98,7 @@ class BH_WP_Account_And_Login_UX {
 	 *
 	 * @since    1.0.0
 	 */
-	protected function define_frontend_hooks() {
+	protected function define_frontend_hooks(): void {
 
 		$plugin_frontend = new Frontend( $this->settings );
 
@@ -113,7 +113,7 @@ class BH_WP_Account_And_Login_UX {
 	 * @since    1.0.0
 	 * @access   private
 	 */
-	protected function define_woocommerce_hooks() {
+	protected function define_woocommerce_hooks(): void {
 
 		$checkout = new Checkout( $this->settings );
 

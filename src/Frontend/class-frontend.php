@@ -37,7 +37,7 @@ class Frontend {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles(): void {
 
 		/**
 		 * This function is provided for demonstration purposes only.
@@ -60,7 +60,7 @@ class Frontend {
 	 *
 	 * @since    1.0.0
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts(): void {
 
 		/**
 		 * This function is provided for demonstration purposes only.
