@@ -13,6 +13,8 @@ use BrianHenryIE\WP_Account_And_Login_UX\Frontend\Frontend;
 
 /**
  * Class Develop_Test
+ *
+ * @coversNothing
  */
 class BH_WP_Account_And_Login_UX_Integration_Test extends \Codeception\TestCase\WPTestCase {
 

@@ -11,7 +11,7 @@ namespace BrianHenryIE\WP_Account_And_Login_UX\Includes;
 /**
  * Class I18n_Test
  *
- * @see I18n
+ * @coversDefaultClass \BrianHenryIE\WP_Account_And_Login_UX\Includes\I18n
  */
 class I18n_WP_Unit_Test extends \Codeception\TestCase\WPTestCase {
 

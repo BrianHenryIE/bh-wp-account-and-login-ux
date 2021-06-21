@@ -12,6 +12,8 @@ use BrianHenryIE\WP_Account_And_Login_UX\Includes\BH_WP_Account_And_Login_UX;
 
 /**
  * Class Plugin_WP_Mock_Test
+ *
+ * @coversNothing
  */
 class BH_WP_Account_And_Login_UX_Test extends \Codeception\Test\Unit {
 

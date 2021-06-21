@@ -12,6 +12,8 @@ use BrianHenryIE\WP_Account_And_Login_UX\Includes\BH_WP_Account_And_Login_UX;
 
 /**
  * Verifies the plugin has been instantiated and added to PHP's $GLOBALS variable.
+ *
+ * @coversNothing
  */
 class BH_WP_Account_And_Login_Integration_Test extends \Codeception\TestCase\WPTestCase {
 
