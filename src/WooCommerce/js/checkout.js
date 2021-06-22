@@ -29,6 +29,8 @@
                     }
                 });
 
+                window.checkoutReloadedBy = 'bh-wp-account-and-login-ux';
+
                 // Fire the ajax for update_order_review
                 // (which will check for a user account).
                 $(document.body).trigger('update_checkout');
@@ -49,6 +51,19 @@
             $('#login_button_clicked').remove();
             $('#password_reset_button_clicked').remove();
 
+            // Only run after the updated_checkout was triggered by this plugin.
+            if (typeof window.checkoutReloadedBy === 'undefined' || window.checkoutReloadedBy !== 'bh-wp-account-and-login-ux' ) {
+                return;
+            }
+            window.checkoutReloadedBy = null;
+
+            // If there is no account for that user, return early.
+            if( ! $('#inline_login_password').is("*") ) {
+                // TODO: Rather than select the first name field, the next field should be (since the order may have been changed by another plugin).
+                $('#billing_first_name').focus();
+                return;
+            }
+
             $('#inline_login_password').focus();
 
             // When ('#inline_login_password').is focused, enter means log in.
@@ -66,6 +81,8 @@
                             opacity: 0.6
                         }
                     });
+
+                    window.checkoutReloadedBy = 'bh-wp-account-and-login-ux';
 
                     $(document.body).trigger('update_checkout');
 
@@ -91,6 +108,8 @@
                     }
                 });
 
+                window.checkoutReloadedBy = 'bh-wp-account-and-login-ux';
+
                 $(document.body).trigger('update_checkout');
 
             });
@@ -107,6 +126,8 @@
                         opacity: 0.6
                     }
                 });
+
+                window.checkoutReloadedBy = 'bh-wp-account-and-login-ux';
 
                 $(document.body).trigger('update_checkout');
 
