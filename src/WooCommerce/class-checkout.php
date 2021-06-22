@@ -422,7 +422,7 @@ class Checkout {
 	/**
 	 * Instance variable to hold the success/failure message after login.
 	 *
-	 * severity: one of info|message|error standard WooCommerce CSS.
+	 * Severity: one of info|message|error standard WooCommerce CSS.
 	 *
 	 * @var array{'message': string, 'severity': string}
 	 */
@@ -461,14 +461,14 @@ class Checkout {
 	 *
 	 * @see woocommerce_form_field()
 	 *
-	 * @param string $field HTML to output.
-	 * @param string $key
-	 * @param mixed  $args
-	 * @param string $value
+	 * @param string $_field HTML to output.
+	 * @param string $_key
+	 * @param mixed  $_args
+	 * @param string $_value
 	 *
 	 * @return string HTML to output.
 	 */
-	public function woocommerce_form_field_checkout_inline_login_response( $field, $key, $args, $value ) {
+	public function woocommerce_form_field_checkout_inline_login_response( $_field, $_key, $_args, $_value ) {
 
 		if ( empty( $this->inline_login_response ) ) {
 			return '';

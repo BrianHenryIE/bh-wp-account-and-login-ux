@@ -38,10 +38,6 @@
 
         });
 
-    });
-
-
-    $( document ).ready(function() {
 
         $( document.body ).bind( 'updated_checkout', function( data ) {
 
@@ -97,6 +93,7 @@
 
                 // TODO: validate not empty (and maybe WP minimum complexity).
 
+                // Add a hidden field whose presence will be checked for on the server side.
                 $('#place_order').prepend('<input type="hidden" name="login_button_clicked" id="login_button_clicked" value="clicked" />');
 
                 // Display loading indicator while logging in.

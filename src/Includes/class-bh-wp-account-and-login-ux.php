@@ -117,11 +117,12 @@ class BH_WP_Account_And_Login_UX {
 
 		$checkout = new Checkout( $this->settings );
 
+		// TODO: there's better ways to do this.
 		add_action( 'wp_footer', array( $checkout, 'add_is_user_logged_in_json' ) );
 
 		add_action( 'wp_enqueue_scripts', array( $checkout, 'enqueue_scripts' ) );
 
-		add_filter( 'pre_option_woocommerce_enable_checkout_login_reminder', array( $checkout, 'woocommerce_disable_checkout_login_reminder' ) );
+		add_filter( 'pre_option_woocommerce_enable_checkout_login_reminder', array( $checkout, 'woocommerce_disable_checkout_login_reminder' ), 10, 3 );
 
 		add_filter( 'woocommerce_checkout_fields', array( $checkout, 'move_email_input_first' ) );
 
