@@ -73,7 +73,12 @@ class Checkout {
 	 */
 	public function enqueue_scripts(): void {
 
-		$version = $this->settings->get_plugin_version();
+		if ( 'production' === wp_get_environment_type() ) {
+			$version = $this->settings->get_plugin_version();
+		} else {
+			$time    = time();
+			$version = "{$time}";
+		}
 
 		wp_enqueue_script( 'bh-wp-account-and-login-ux-woocommerce-checkout', plugin_dir_url( __FILE__ ) . 'js/checkout.js', array( 'jquery' ), $version, false );
 
@@ -84,7 +89,7 @@ class Checkout {
 	 *
 	 * This is just the "Allow customers to log into an existing account during checkout" option.
 	 *
-	 * TODO only return no on the actual checkout, not the settings page
+	 * TODO: only return 'no' on the actual checkout, not the settings page.
 	 *
 	 * @see /wp-admin/admin.php?page=wc-settings&tab=account
 	 *
@@ -93,9 +98,17 @@ class Checkout {
 	 * @see templates/checkout/form-login.php
 	 * @see get_option()
 	 *
+	 * @param mixed  $_pre_option The value to return instead of the option value. This differs
+	 *                           from `$default`, which is used as the fallback value in the event
+	 *                           the option doesn't exist elsewhere in get_option().
+	 *                           Default false (to skip past the short-circuit).
+	 * @param string $_option     Option name.
+	 * @param mixed  $_default    The fallback value to return if the option does not exist.
+	 *                           Default false.
+	 *
 	 * @return string
 	 */
-	public function woocommerce_disable_checkout_login_reminder() {
+	public function woocommerce_disable_checkout_login_reminder( $_pre_option, $_option, $_default ) {
 		return 'no';
 	}
 
@@ -253,22 +266,16 @@ class Checkout {
 			return '';
 		}
 
-		$field = '<p>';
-
-		$field .= '<div>Please log in to your account:</div>';
-
-		$field .= '<div style="position:relative;">';
-
+        $field = '<p class="form-row form-row-first" id="inline_login_password_field" data-priority="5">';
+		$field .= '<label for="inline_login_password" class="">Please log in to your account:</label>';
+		$field .= '<span class="woocommerce-input-wrapper">';
 		$field .= '<input type="password" placeholder="password" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="inline_login_password" id="inline_login_password" />';
-		$field .= '<div style="position:absolute; right:0; display: inline-block; width: 50%; text-align: right;">';
+        $field .= '</span>';
+        $field .= '</p>';
 
-		$field .= '<button id="inline_login_button" type="button" style="margin: 0 10px;" class="button alt">Log in</button>';
-
-		$field .= '<button id="inline_password_reset_button" type="button">Reset Password</button>';
-
-		$field .= '</div>';
-		$field .= '</div>';
-
+        $field .= '<p style="margin-top:23px" class="form-row form-row-last" id="inline_login_buttons_field" data-priority="6">';
+        $field .= '<button id="inline_login_button" type="button" style="margin: 0 10px 0 0;" class="button alt">Log in</button>';
+        $field .= '<button id="inline_password_reset_button" type="button">Reset Password</button>';
 		$field .= '</p>';
 
 		return $field;
