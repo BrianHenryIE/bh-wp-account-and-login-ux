@@ -17,6 +17,10 @@
     },
     "repositories": [
         {
+            "url": "https://github.com/BrianHenryIE/dist-archive-command",
+            "type": "git"
+        },
+        {
             "url": "https://github.com/WordPress/wordpress-develop",
             "type": "git"
         },
@@ -57,6 +61,7 @@
         "szepeviktor/phpstan-wordpress": "^0.7.2",
         "voku/portable-ascii": "dev-master",
         "wordpress/wordpress": "*",
+        "wp-cli/dist-archive-command": "dev-master",
         "wp-cli/wp-cli-bundle": "*",
         "wp-coding-standards/wpcs": "*",
         "wpackagist-plugin/woo-phone-validator": "^1.3",

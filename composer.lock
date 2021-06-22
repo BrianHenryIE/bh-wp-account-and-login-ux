@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "21b04c262f1e31d4beacafd34b697c02",
+    "content-hash": "87b062c99b9552e4ed46655b49868ad0",
     "packages": [
         {
             "name": "pablo-sg-pacheco/wp-namespace-autoloader",
@@ -4311,16 +4311,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.89",
+            "version": "0.12.90",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "54c0f5a6c30511b77128d58b6369f718df250542"
+                "reference": "f0e4b56630fc3d4eb5be86606d07212ac212ede4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/54c0f5a6c30511b77128d58b6369f718df250542",
-                "reference": "54c0f5a6c30511b77128d58b6369f718df250542",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f0e4b56630fc3d4eb5be86606d07212ac212ede4",
+                "reference": "f0e4b56630fc3d4eb5be86606d07212ac212ede4",
                 "shasum": ""
             },
             "require": {
@@ -4351,7 +4351,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/0.12.89"
+                "source": "https://github.com/phpstan/phpstan/tree/0.12.90"
             },
             "funding": [
                 {
@@ -4371,7 +4371,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-06-09T20:23:49+00:00"
+            "time": "2021-06-18T07:15:38+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -6167,6 +6167,7 @@
                     "type": "github"
                 }
             ],
+            "abandoned": true,
             "time": "2020-09-28T06:45:17+00:00"
         },
         {
@@ -8068,16 +8069,16 @@
         },
         {
             "name": "szepeviktor/phpstan-wordpress",
-            "version": "v0.7.5",
+            "version": "v0.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/szepeviktor/phpstan-wordpress.git",
-                "reference": "90cf3c6a225a633889b1b3a556816911f42de4f7"
+                "reference": "3721127a9ddc62c8dc14fc8726cbfb3e47529bbe"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/90cf3c6a225a633889b1b3a556816911f42de4f7",
-                "reference": "90cf3c6a225a633889b1b3a556816911f42de4f7",
+                "url": "https://api.github.com/repos/szepeviktor/phpstan-wordpress/zipball/3721127a9ddc62c8dc14fc8726cbfb3e47529bbe",
+                "reference": "3721127a9ddc62c8dc14fc8726cbfb3e47529bbe",
                 "shasum": ""
             },
             "require": {
@@ -8087,7 +8088,7 @@
                 "symfony/polyfill-php73": "^1.12.0"
             },
             "require-dev": {
-                "composer/composer": "^1.8.6",
+                "composer/composer": "^1.10.22",
                 "dealerdirect/phpcodesniffer-composer-installer": "^0.7",
                 "php-parallel-lint/php-parallel-lint": "^1.1",
                 "phpstan/phpstan-strict-rules": "^0.12",
@@ -8120,7 +8121,7 @@
             ],
             "support": {
                 "issues": "https://github.com/szepeviktor/phpstan-wordpress/issues",
-                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v0.7.5"
+                "source": "https://github.com/szepeviktor/phpstan-wordpress/tree/v0.7.6"
             },
             "funding": [
                 {
@@ -8128,7 +8129,7 @@
                     "type": "custom"
                 }
             ],
-            "time": "2021-03-19T21:23:23+00:00"
+            "time": "2021-06-19T15:51:50+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -8847,6 +8848,81 @@
                 "source": "https://github.com/wp-cli/db-command/tree/v2.0.13"
             },
             "time": "2021-05-12T06:04:34+00:00"
+        },
+        {
+            "name": "wp-cli/dist-archive-command",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BrianHenryIE/dist-archive-command",
+                "reference": "71da1ced38a80ff30681f98a610ad4593457d03d"
+            },
+            "require": {
+                "php": ">=5.4",
+                "wp-cli/wp-cli": "^2"
+            },
+            "require-dev": {
+                "behat/behat": "~2.5",
+                "wp-cli/extension-command": "^2",
+                "wp-cli/scaffold-command": "^2",
+                "wp-cli/wp-cli-tests": "^2.1"
+            },
+            "default-branch": true,
+            "type": "wp-cli-package",
+            "extra": {
+                "commands": [
+                    "dist-archive"
+                ],
+                "readme": {
+                    "shields": [
+                        "[![CircleCI](https://circleci.com/gh/wp-cli/dist-archive-command/tree/master.svg?style=svg)](https://circleci.com/gh/wp-cli/dist-archive-command/tree/master)"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "": "src/"
+                },
+                "files": [
+                    "dist-archive-command.php"
+                ]
+            },
+            "scripts": {
+                "behat": [
+                    "run-behat-tests"
+                ],
+                "lint": [
+                    "run-linter-tests"
+                ],
+                "phpcs": [
+                    "run-phpcs-tests"
+                ],
+                "phpunit": [
+                    "run-php-unit-tests"
+                ],
+                "prepare-tests": [
+                    "install-package-tests"
+                ],
+                "test": [
+                    "@lint",
+                    "@phpcs",
+                    "@phpunit",
+                    "@behat"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniel Bachhuber",
+                    "email": "daniel@runcommand.io",
+                    "homepage": "https://runcommand.io"
+                }
+            ],
+            "description": "Create a distribution .zip or .tar.gz based on a plugin or theme's .distignore file.",
+            "homepage": "https://runcommand.io/wp/dist-archive/",
+            "time": "2021-06-21T22:45:03+00:00"
         },
         {
             "name": "wp-cli/embed-command",
@@ -10706,7 +10782,8 @@
         "pablo-sg-pacheco/wp-namespace-autoloader": 20,
         "brianhenryie/composer-phpstorm": 20,
         "kporras07/composer-symlinks": 20,
-        "voku/portable-ascii": 20
+        "voku/portable-ascii": 20,
+        "wp-cli/dist-archive-command": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
