@@ -60,10 +60,10 @@ jobs:
       #      - name: Create Composer auth.json
       #        run: php -r "file_put_contents( 'auth.json', json_encode( [ 'http-basic' => [ 'blog.brianhenry.ie' => [ 'username' => '"${{ secrets.COMPOSER_AUTH_SECRET }}"', 'password' => 'satispress' ] ] ] ) );"
 
-      - name: Run composer install
-        uses: php-actions/composer@v5
-        with:
-          args: --ignore-platform-reqs
+#      - name: Run composer install
+#        uses: php-actions/composer@v5
+#        with:
+#          args: --ignore-platform-reqs
 
       # This appends code for yahnis-elsts/plugin-update-checker at the end of the main plugin file.
       - name: Add updater
