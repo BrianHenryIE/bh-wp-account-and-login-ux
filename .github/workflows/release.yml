@@ -79,9 +79,7 @@ jobs:
             $updateChecker->getVcsApi()->enableReleaseAssets();
         run: |
           composer require yahnis-elsts/plugin-update-checker erusev/parsedown;
-          echo //test >> src/bh-wp-account-and-login-ux;
-          echo $code;
-          echo $code >> src/bh-wp-account-and-login-ux;
+          echo $code >> src/bh-wp-account-and-login-ux.php;
 
       - name: Create wpconfig ... the composer.json creation didn't work
         run: |
