@@ -19,6 +19,6 @@ class Settings implements Settings_Interface {
 	 * @return string
 	 */
 	public function get_plugin_version(): string {
-		return '0.2.0';
+		return '0.2.1';
 	}
 }

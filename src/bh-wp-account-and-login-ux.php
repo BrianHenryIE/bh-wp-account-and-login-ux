@@ -15,7 +15,7 @@
  * Plugin Name:       Account & Login UX
  * Plugin URI:        http://github.com/BrianHenryIE/bh-wp-account-and-login-ux/
  * Description:
- * Version:           0.2.0
+ * Version:           0.2.1
  * Author:            Brian Henry
  * Author URI:        http://example.com/
  * License:           GPL-2.0+
@@ -43,7 +43,7 @@ require_once plugin_dir_path( __FILE__ ) . 'autoload.php';
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'BH_WP_ACCOUNT_AND_LOGIN_UX_VERSION', '0.2.0' );
+define( 'BH_WP_ACCOUNT_AND_LOGIN_UX_VERSION', '0.2.1' );
 
 /**
  * The code that runs during plugin activation.

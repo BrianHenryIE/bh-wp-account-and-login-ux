@@ -86,7 +86,7 @@
         "strauss": {
             "namespace_prefix": "BrianHenryIE\\WP_Account_And_Login_UX\\",
             "target_directory": "/src/strauss/",
-            "classmap_prefix": "BH_WP_Account_And_Login_UX",
+            "classmap_prefix": "BH_WP_Account_And_Login_UX_",
             "override_autoload": {
                 "yahnis-elsts/plugin-update-checker": {
                     "classmap": ["Puc"],
