@@ -78,8 +78,7 @@ jobs:
             $updateChecker->setBranch( 'master' );
             $updateChecker->getVcsApi()->enableReleaseAssets();
         run: |
-          composer require yahnis-elsts/plugin-update-checker --no-script
-          composer require erusev/parsedown --no-script
+          composer require yahnis-elsts/plugin-update-checker erusev/parsedown
           echo $code >> src/bh-wp-account-and-login-ux
 
       - name: Create wpconfig ... the composer.json creation didn't work
