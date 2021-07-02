@@ -69,16 +69,16 @@ jobs:
       - name: Add updater
         env:
           code: |
-            %0A%0A$updateChecker = \BH_WP_Account_And_Login_UX_Puc_v4_Factory::buildUpdateChecker(%0A
-            	'https://github.com/brianhenryie/bh-wp-account-and-login-ux/',%0A
-            	__FILE__,%0A
-            	'bh-wp-account-and-login-ux'%0A
-            );%0A
-            $updateChecker->setBranch( 'master' );%0A
-            $updateChecker->getVcsApi()->enableReleaseAssets();
+            \n\n$updateChecker = \BH_WP_Account_And_Login_UX_Puc_v4_Factory::buildUpdateChecker(\n
+            	'https://github.com/brianhenryie/bh-wp-account-and-login-ux/',\n
+            	__FILE__,\n
+            	'bh-wp-account-and-login-ux'\n
+            );\n
+            $updateChecker->setBranch( 'master' );\n
+            $updateChecker->getVcsApi()->enableReleaseAssets();\n
         run: |
           composer require yahnis-elsts/plugin-update-checker erusev/parsedown;
-          echo $code >> src/bh-wp-account-and-login-ux.php;
+          printf $code >> src/bh-wp-account-and-login-ux.php;
 
       - name: Create wpconfig ... the composer.json creation didn't work
         run: |
