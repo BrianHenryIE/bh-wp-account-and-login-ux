@@ -266,16 +266,16 @@ class Checkout {
 			return '';
 		}
 
-        $field = '<p class="form-row form-row-first" id="inline_login_password_field" data-priority="5">';
+		$field  = '<p class="form-row form-row-first" id="inline_login_password_field" data-priority="5">';
 		$field .= '<label for="inline_login_password" class="">Please log in to your account:</label>';
 		$field .= '<span class="woocommerce-input-wrapper">';
 		$field .= '<input type="password" placeholder="password" class="input-text ' . esc_attr( implode( ' ', $args['input_class'] ) ) . '" name="inline_login_password" id="inline_login_password" />';
-        $field .= '</span>';
-        $field .= '</p>';
+		$field .= '</span>';
+		$field .= '</p>';
 
-        $field .= '<p style="margin-top:23px" class="form-row form-row-last" id="inline_login_buttons_field" data-priority="6">';
-        $field .= '<button id="inline_login_button" type="button" style="margin: 0 10px 0 0;" class="button alt">Log in</button>';
-        $field .= '<button id="inline_password_reset_button" type="button">Reset Password</button>';
+		$field .= '<p style="margin-top:23px" class="form-row form-row-last" id="inline_login_buttons_field" data-priority="6">';
+		$field .= '<button id="inline_login_button" type="button" style="margin: 0 10px 0 0;" class="button alt">Log in</button>';
+		$field .= '<button id="inline_password_reset_button" type="button">Reset Password</button>';
 		$field .= '</p>';
 
 		return $field;
