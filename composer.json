@@ -85,7 +85,17 @@
         },
         "strauss": {
             "namespace_prefix": "BrianHenryIE\\WP_Account_And_Login_UX\\",
-            "target_directory": "/src/strauss/"
+            "target_directory": "/src/strauss/",
+            "classmap_prefix": "BH_WP_Account_And_Login_UX",
+            "override_autoload": {
+                "yahnis-elsts/plugin-update-checker": {
+                    "classmap": ["Puc"],
+                    "files": ["load-v4p11.php","vendor/PucReadmeParser.php"]
+                },
+                "erusev/parsedown": {
+                    "files": ["Parsedown.php"]
+                }
+            }
         },
         "symlinks": {
             "wp-content": "wordpress/wp-content",

@@ -8,7 +8,7 @@ on:
 
 
 jobs:
-  phpstan:
+  release:
     runs-on: ubuntu-latest
 
     services:
@@ -64,6 +64,23 @@ jobs:
         uses: php-actions/composer@v5
         with:
           args: --ignore-platform-reqs
+
+      # This appends code for yahnis-elsts/plugin-update-checker at the end of the main plugin file.
+      - name: Add updater
+        env:
+          code: |
+            |
+            $updateChecker = \BH_WP_Account_And_Login_UX_Puc_v4_Factory::buildUpdateChecker(
+            	'https://github.com/brianhenryie/bh-wp-account-and-login-ux/',
+            	__FILE__,
+            	'bh-wp-account-and-login-ux'
+            );
+            $updateChecker->setBranch( 'master' );
+            $updateChecker->getVcsApi()->enableReleaseAssets();
+        run: |
+          composer require yahnis-elsts/plugin-update-checker --no-script
+          composer require erusev/parsedown --no-script
+          echo $code >> src/bh-wp-account-and-login-ux
 
       - name: Create wpconfig ... the composer.json creation didn't work
         run: |
