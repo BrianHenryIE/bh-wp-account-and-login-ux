@@ -69,7 +69,7 @@ jobs:
       - name: Add updater
         env:
           code: |
-            \n\n$updateChecker = \BH_WP_Account_And_Login_UX_Puc_v4_Factory::buildUpdateChecker(
+            \n\n$updateChecker = \Puc_v4_Factory::buildUpdateChecker(
             	'https://github.com/brianhenryie/bh-wp-account-and-login-ux/',
             	__FILE__,
             	'bh-wp-account-and-login-ux'

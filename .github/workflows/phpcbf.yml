@@ -77,12 +77,8 @@ jobs:
         continue-on-error: true
         run: vendor/bin/phpcs -q -n --report=checkstyle | cs2pr
 
-      - name: Discard environment changes before commiting other changes
-        run: |
-          git checkout -- .env.testing
-          git checkout -- tests/_data/dump.sql
-
       - name: Commit PHPCBF changes
         uses: stefanzweifel/git-auto-commit-action@v4.1.1
         with:
+          file_pattern: src
           commit_message: "🤖 PHPCBF"

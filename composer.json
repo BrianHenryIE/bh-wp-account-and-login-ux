@@ -95,6 +95,9 @@
                 "erusev/parsedown": {
                     "files": ["Parsedown.php"]
                 }
+            },
+            "exclude_from_prefix": {
+                "packages": ["yahnis-elsts/plugin-update-checker","erusev/parsedown"]
             }
         },
         "symlinks": {
@@ -143,6 +146,9 @@
             "vendor/bin/codecept run wpunit --coverage wpunit.cov",
             "vendor/bin/phpcov merge --clover tests/_output/clover.xml --html tests/_output/html tests/_output;",
             "open tests/_output/html/index.html"
+        ],
+        "create-plugin-archive": [
+            "vendor/bin/wp dist-archive src --plugin-dirname=$(basename \"$PWD\")"
         ]
     }
 }

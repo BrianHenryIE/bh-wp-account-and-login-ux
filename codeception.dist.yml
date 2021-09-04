@@ -23,8 +23,7 @@ coverage:
     include:
         - src/*
     exclude:
-        - src/dependencies/*
-        - src/vendor/*
+        - src/strauss/*
         - /*/index.php
         - /*/*.txt
         - src/autoload.php
