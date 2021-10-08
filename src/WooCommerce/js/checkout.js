@@ -44,6 +44,8 @@
             // Remove the loading indicator.
             $('.woocommerce-billing-fields__field-wrapper').unblock();
 
+            $('select').select2();
+
             $('#login_button_clicked').remove();
             $('#password_reset_button_clicked').remove();
 
