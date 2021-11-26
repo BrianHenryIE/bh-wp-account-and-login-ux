@@ -54,7 +54,6 @@ class BH_WP_Account_And_Login_UX {
 		$this->settings = $settings;
 
 		$this->set_locale();
-		$this->define_admin_hooks();
 		$this->define_frontend_hooks();
 		$this->define_woocommerce_hooks();
 
@@ -103,7 +102,6 @@ class BH_WP_Account_And_Login_UX {
 		$plugin_frontend = new Frontend( $this->settings );
 
 		add_action( 'wp_enqueue_scripts', array( $plugin_frontend, 'enqueue_styles' ) );
-		add_action( 'wp_enqueue_scripts', array( $plugin_frontend, 'enqueue_scripts' ) );
 
 	}
 
