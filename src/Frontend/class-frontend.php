@@ -25,57 +25,55 @@ use BrianHenryIE\WP_Account_And_Login_UX\API\Settings_Interface;
  */
 class Frontend {
 
-	protected Settings_Interface $settings;
+  protected Settings_Interface $settings;
 
-	public function __construct( Settings_Interface $settings ) {
-		$this->settings = $settings;
-	}
+  public function __construct(Settings_Interface $settings) {
+    $this->settings = $settings;
+  }
 
+  /**
+   * Register the stylesheets for the frontend-facing side of the site.
+   *
+   * @since    1.0.0
+   */
+  public function enqueue_styles(): void {
+    /**
+     * This function is provided for demonstration purposes only.
+     *
+     * An instance of this class should be passed to the run() function
+     * defined in Loader as all of the hooks are defined
+     * in that particular class.
+     *
+     * The Loader will then create the relationship
+     * between the defined hooks and the functions defined in this
+     * class.
+     */
 
-	/**
-	 * Register the stylesheets for the frontend-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_styles(): void {
+    if (function_exists(is_checkout()) && is_checkout()) {
+      wp_enqueue_style($this->settings->get_plugin_slug(), plugin_dir_url(__FILE__) . 'css/bh-wp-account-and-login-ux-frontend.css', [], $this->settings->get_plugin_version(), 'all');
+    }
+  }
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_style( $this->settings->get_plugin_slug(), plugin_dir_url( __FILE__ ) . 'css/bh-wp-account-and-login-ux-frontend.css', array(), $this->settings->get_plugin_version(), 'all' );
-
-	}
-
-	/**
-	 * Register the JavaScript for the frontend-facing side of the site.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts(): void {
-
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->settings->get_plugin_slug(), plugin_dir_url( __FILE__ ) . 'js/bh-wp-account-and-login-ux-frontend.js', array( 'jquery' ), $this->settings->get_plugin_version(), false );
-
-	}
+  /**
+   * Register the JavaScript for the frontend-facing side of the site.
+   *
+   * @since    1.0.0
+   */
+  public function enqueue_scripts(): void {
+    /**
+     * This function is provided for demonstration purposes only.
+     *
+     * An instance of this class should be passed to the run() function
+     * defined in Loader as all of the hooks are defined
+     * in that particular class.
+     *
+     * The Loader will then create the relationship
+     * between the defined hooks and the functions defined in this
+     * class.
+     */
+    if (function_exists(is_checkout()) && is_checkout()) {
+      wp_enqueue_script($this->settings->get_plugin_slug(), plugin_dir_url(__FILE__) . 'js/bh-wp-account-and-login-ux-frontend.js', ['jquery'], $this->settings->get_plugin_version(), false);
+    }
+  }
 
 }
