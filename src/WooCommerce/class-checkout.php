@@ -76,7 +76,7 @@ class Checkout {
       $time = time();
       $version = "{$time}";
     }
-    if (is_checkout()) {
+    if (function_exists('is_checkout') && is_checkout()) {
       wp_enqueue_script('bh-wp-account-and-login-ux-woocommerce-checkout', plugin_dir_url(__FILE__) . 'js/checkout.js', ['jquery'], $version, false);
     }
   }
