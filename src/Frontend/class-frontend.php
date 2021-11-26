@@ -48,10 +48,7 @@ class Frontend {
      * between the defined hooks and the functions defined in this
      * class.
      */
-
-    if (function_exists(is_checkout()) && is_checkout()) {
       wp_enqueue_style($this->settings->get_plugin_slug(), plugin_dir_url(__FILE__) . 'css/bh-wp-account-and-login-ux-frontend.css', [], $this->settings->get_plugin_version(), 'all');
-    }
   }
 
   /**
@@ -71,9 +68,7 @@ class Frontend {
      * between the defined hooks and the functions defined in this
      * class.
      */
-    if (function_exists(is_checkout()) && is_checkout()) {
       wp_enqueue_script($this->settings->get_plugin_slug(), plugin_dir_url(__FILE__) . 'js/bh-wp-account-and-login-ux-frontend.js', ['jquery'], $this->settings->get_plugin_version(), false);
-    }
   }
 
 }
